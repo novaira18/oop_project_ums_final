@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 using namespace std;
 
 struct Credential {
@@ -11,8 +11,14 @@ struct Credential {
 class UserCredentialManager {
 private:
     vector<Credential> credentials;
-public:
+    int findCredentialIndexByUserID(const string& userID);
+    int findCredentialIndexByUsername(const string& username);
+    void addCredential();
     void changePassword(const string& userID);
     void resetPassword(const string& userID);
     bool verifyLogin(const string& username, const string& password);
+    void viewCredentials();
+public:
+    void menu(); 
 };
+
