@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 using namespace std;
 
 struct UGMember {
@@ -11,10 +11,12 @@ struct UGMember {
 class UGManager {
 private:
     vector<UGMember> ugMembers;
-
-public:
+    int findUGMemberIndex(const string& ugID);
     void addUGMember();
     void viewUGMembers();
-    void editUGMember(const string& ugID);
-    void deleteUGMember(const string& ugID);
+    void editUGMember();
+    void deleteUGMember();
+public:
+    void menu();  // Add this declaration
 };
+
