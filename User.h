@@ -1,4 +1,5 @@
 #include "Person.h"
+#include <string>
 using namespace std;
 
 class User : public Person {
@@ -7,6 +8,12 @@ protected:
     string role;
     string contactNumber;
 public:
+    // Constructor
+    User(string name, string email, string cnic, string registrationId,
+         string username, string password, string userID,
+         string role, string contactNumber);
+
+    // Member functions
     string getUsername() const;
     string getRole() const;
     string getName() const;
@@ -14,5 +21,7 @@ public:
     void setContact(const string& contact);
     virtual bool verifyPassword(const string& enteredPassword);
     virtual void showPanel() = 0;
-    virtual ~User() {}
+
+    virtual ~User();
 };
+
