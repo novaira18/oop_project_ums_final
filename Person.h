@@ -10,7 +10,14 @@ protected:
     string username;
     string password;
 public:
+    // Constructor
+    Person(string name, string email, string cnic,
+           string registrationId, string username, string password);
+
+    // Pure virtual functions
     virtual void showMenu() = 0;
     virtual void viewProfile() = 0;
-    virtual ~Person() {}
+
+    // Virtual destructor
+    virtual ~Person();
 };
