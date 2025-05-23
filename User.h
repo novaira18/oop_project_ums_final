@@ -1,6 +1,3 @@
-#ifndef USER_H
-#define USER_H
-
 #include "Person.h"
 #include <string>
 #include <iostream>
@@ -35,5 +32,3 @@ public:
 
     virtual ~User();
 };
-
-#endif
