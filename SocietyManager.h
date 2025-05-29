@@ -1,30 +1,62 @@
-#include <vector>
+#ifndef SOCIETY_MENU_H
+#define SOCIETY_MENU_H
+
 #include <string>
+#include <vector>
+#include <map>
 using namespace std;
 
-struct Society {
-    string societyID;
-    string societyName;
-    string presidentName;
-};
-struct SocietyMember {
-    string memberID;
-    string name;
-    string societyID;
-    string role;
-};
-class SocietyManager {
-private:
-    vector<Society> societies;
-    vector<SocietyMember> societyMembers;
+class SocietyMenu {
 public:
-    void addSociety();
-    void viewSocieties();
-    void editSociety(const string& societyID);
-    void deleteSociety(const string& societyID);
-    void addSocietyMember();
-    void viewSocietyMembers();
-    void editSocietyMember(const string& memberID);
-    void deleteSocietyMember(const string& memberID);
+    virtual ~SocietyMenu() {}
+
+    // Interface methods
+    virtual void addMembers() =0;
+    virtual void ViewMembers() = 0;
+    virtual void AddEvents() = 0;
+    virtual void loadPendingEvents() =0;
+    virtual void RequestApprovalForEvents() = 0;
+    virtual void ViewPreviousEvents() = 0;
+    virtual void Logout() = 0;
 };
+
+// ========== Member Management ==========
+class MemberManagement : public SocietyMenu {
+private:
+    vector<string> memberNames;
+    map<string, string> memberRoles; // e.g., { "Ali", "President" }
+    string societyName;
+
+public:
+    // Overridden functions
+    void addMembers() override;
+    void ViewMembers() override;
+    void Logout() override;
+};
+
+// ========== Event Manager ==========
+class EventManager : public SocietyMenu {
+private:
+    struct Event {
+        string title;
+        string date;
+        string location;
+        string description;
+        bool isApproved;
+    };
+
+    vector<Event> eventList;
+    vector<Event> pendingApprovalEvents;
+    string societyName;
+
+public:
+    void AddEvents() override;
+    void loadPendingEvents() override;
+    void RequestApprovalForEvents() override;
+    void ViewPreviousEvents() override;
+    void Logout() override;
+};
+
+#endif 
+
 
